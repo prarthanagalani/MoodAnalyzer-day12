@@ -38,11 +38,9 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void testNullMessage() {
+    public void testNullMessage() throws MoodAnalysisException {
         moodAnalyser = new MoodAnalyser(null);
-        assertThrows(MoodAnalysisException.class, () -> {
-            moodAnalyser.analyseMood();
-        });
+        assertEquals("Happy", moodAnalyser.analyseMood());
     }
 
     @Test
