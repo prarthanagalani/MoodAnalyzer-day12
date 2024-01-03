@@ -1,30 +1,26 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.example.MoodAnalyser;
 
 public class MoodAnalyserTest {
 
-    MoodAnalyser moodAnalyser = new MoodAnalyser();
+
+    public void TestHappyMood()
+    {     MoodAnalyser mood = new MoodAnalyser("i am in happy mood.");
+        assertEquals("Happy",mood.analyseMood());
+    } 
 
     @Test
-    public void testHappyMood() {
-
-        String result = moodAnalyser.analyseMood("I am feeling happy today");
-        assertEquals("Happy", result);
-    }
-
-    @Test
-    public void testSadMood() {
-
-        String result = moodAnalyser.analyseMood("I feel sad right now");
-        assertEquals("Sad", result);
-    }
+    public void TestSadMood()
+    {     MoodAnalyser mood = new MoodAnalyser("i am in sad mood.");
+        assertEquals("Sad",mood.analyseMood());
+    } 
 
     @Test
     public void testNoKeywordMatch() {
-
-        String result = moodAnalyser.analyseMood("I am in any mood.");
-        assertEquals("Happy", result);
+       MoodAnalyser mood = new MoodAnalyser("i am in any mood");
+       assertEquals("Happy",mood.analyseMood());
     }
 }
+
+
