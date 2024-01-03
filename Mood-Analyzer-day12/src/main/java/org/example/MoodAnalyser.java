@@ -3,6 +3,10 @@ package org.example;
 public class MoodAnalyser {
     private String message;
 
+    public enum Error {
+        NULL, EMPTY
+    }
+
     // Constructor with parameters
     public MoodAnalyser(String message) {
         this.message = message;
@@ -15,9 +19,9 @@ public class MoodAnalyser {
 
     public String analyseMood() throws MoodAnalysisException {
         if (message == null) {
-            return "Happy";
+            throw new MoodAnalysisException(Error.NULL);
         } else if (message.isEmpty()) {
-            throw new MoodAnalysisException("Invalid message.");
+            throw new MoodAnalysisException(Error.EMPTY);
         } else if (message.toLowerCase().contains("happy")) {
             return "Happy";
         } else if (message.toLowerCase().contains("sad")) {

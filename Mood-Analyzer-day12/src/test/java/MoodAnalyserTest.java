@@ -38,16 +38,20 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void testNullMessage() throws MoodAnalysisException {
+    public void testNullMessage() {
         moodAnalyser = new MoodAnalyser(null);
-        assertEquals("Happy", moodAnalyser.analyseMood());
+        MoodAnalysisException exception = assertThrows(MoodAnalysisException.class, () -> {
+            moodAnalyser.analyseMood();
+        });
+        assertEquals(MoodAnalyser.Error.NULL, exception.getError());
     }
 
     @Test
     public void testEmptyMessage() {
         moodAnalyser = new MoodAnalyser("");
-        assertThrows(MoodAnalysisException.class, () -> {
+        MoodAnalysisException exception = assertThrows(MoodAnalysisException.class, () -> {
             moodAnalyser.analyseMood();
         });
+        assertEquals(MoodAnalyser.Error.EMPTY, exception.getError());
     }
 }

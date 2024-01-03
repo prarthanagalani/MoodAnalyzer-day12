@@ -1,7 +1,14 @@
 package org.example;
 
 public class MoodAnalysisException extends Exception {
-    public MoodAnalysisException(String message) {
-        super(message);
+    private MoodAnalyser.Error error;
+
+    public MoodAnalysisException(MoodAnalyser.Error error) {
+        super("Error: " + error);
+        this.error = error;
+    }
+
+    public MoodAnalyser.Error getError() {
+        return error;
     }
 }
